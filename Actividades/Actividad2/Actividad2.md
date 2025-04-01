@@ -239,6 +239,19 @@ Es el proceso de implementar automáticamente una aplicación en el entorno de p
 
 Con esto notamos que la diferencia entre CD y CI, es que la entrega continua necesita la aprobación manual para empezar su despliegue, mientras que el despliegue continuo, solo necesita pasar las pruebas y luego de ello su despliegue será automático.
 
+- **Riesgos**
+  - Entrega continua:
+    - Se reduce aún más el riesgo debido a que aún necesita una revisión final para su aprobación manual en su despliegue
+  - Despliegue continuo:
+    - Requeriría un sistema de pruebas altamente confiable para su ejecución ya que en caso de alguna falla, desplegará la aplicación aún así tenga errores
+
+- **Tiempo**
+  - Entrega continua:
+    - Debido a que necesita una aprobación manual, el tiempo depende de qué tan rápido lo verifiquen y decidan desplegarlo
+  
+  - Despliegue continuo:
+    - No necesita una aprobación final, por lo tanto su tiempo de desarrollo es minimizado 
+
 
 > - Describir la relevancia de implementar pruebas automáticas (unitarias, de integración, de seguridad) dentro del pipeline.
 
@@ -262,7 +275,8 @@ Las pruebas automáticas en el pipeline de CI/CD aseguran la calidad y estabilid
 
 ## Evaluación y discusión final
 3. **Trabajo colaborativo**
-    -    Diseñar un flujo teórico que combine IaC (para crear recursos en la nube), despliegue de contenedores en Kubernetes y monitoreo con Prometheus/Grafana.
+
+>    Diseñar un flujo teórico que combine IaC (para crear recursos en la nube), despliegue de contenedores en Kubernetes y monitoreo con Prometheus/Grafana.
 
 - Flujo teórico
     - Aprovisionamiento de infraestructura con Terraform (configuración de red, creación de máquina virtual, definición de almacenamiento y configuración de los roles permitidos)
@@ -273,5 +287,28 @@ Las pruebas automáticas en el pipeline de CI/CD aseguran la calidad y estabilid
 
 ![Flujo](flujo.jpg)
 
+## Recursos adicionales
 
+- [Reference to Named Value](https://developer.hashicorp.com/terraform/language/expressions/references).
 
+- [Estructura de un módulo en Terraform](https://cloud.google.com/docs/terraform/best-practices/general-style-structure?hl=es-419#:~:text=started%20with%20Terraform.-,Follow%20a%20standard%20module%20structure,basic%20documentation%20about%20the%20module).
+
+- [Administración de dependencias en Terraform](https://cloud.google.com/docs/terraform/best-practices/dependency-management?hl=es-419#:~:text=Terraform%20configuration%20dependencies%20can%20be,using%20the%20depends_on%20meta%20argument).
+
+- [Terraform files: How to Structure a Terraform Project](https://spacelift.io/blog/terraform-files).
+
+- [Descripción general de los módulos en Terraform](https://developer.hashicorp.com/terraform/tutorials/modules/module).
+
+- [Autoscaling Workloads in Kubernetes](https://kubernetes.io/docs/concepts/workloads/autoscaling/#:~:text=Kubernetes%20supports%20manual%20scaling%20of,resource%20definition%20of%20your%20workload).
+
+- [Kubernetes en entornos de alto tráfico](https://medium.com/upday-devs/kubernetes-on-a-high-traffic-environment-3-key-takeaways-39d3852fb515).
+
+- [Application Metrics](https://devcenter.heroku.com/articles/metrics).
+
+- [¿Qué es el despliegue continuo?](https://www.ibm.com/es-es/topics/continuous-deployment).
+
+- [¿Qué es la entrega continua?](https://aws.amazon.com/es/devops/continuous-delivery/).
+
+- [Automatización de pruebas en pipelines CI/CD](https://es.abstracta.us/blog/crear-pipeline-automatizacion-pruebas-integracion-entrega-continua/).
+
+- [Pruebas y Garantía de Calidad dentro de un pipeline CI/CD](https://razorops.com/blog/testing-and-quality-assurance-within-a-ci-cd-pipeline).
