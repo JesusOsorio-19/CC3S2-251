@@ -279,7 +279,7 @@ Las pruebas automáticas en el pipeline de CI/CD aseguran la calidad y estabilid
 >    Diseñar un flujo teórico que combine IaC (para crear recursos en la nube), despliegue de contenedores en Kubernetes y monitoreo con Prometheus/Grafana.
 
 - Flujo teórico
-    - Aprovisionamiento de infraestructura con Terraform (configuración de red, creación de máquina virtual, definición de almacenamiento y configuración de los roles permitidos)
+    - Aprovisionamiento de infraestructura10:28 1/04/25 con Terraform (configuración de red, creación de máquina virtual, definición de almacenamiento y configuración de los roles permitidos)
     - Despliegue de contenedores Kubernetes (construcción de imagen Docker y configuración de CI/CD para despliegues automáticos)
     - Configuración del monitoreo con Prometheus y Grafana (configuración de los servicios para recolección de métricas de los pods, establecimiento de métricas mínimas para verificar el estado de la aplicación)
  
