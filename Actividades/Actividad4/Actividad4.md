@@ -132,3 +132,32 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 **5. Visualización gráfica del historial:**
 
 ![](imgs/ejr2/logall.png)
+
+### Ejercicio 3: Creación y gestión de ramas desde commits específicos
+
+**1. Crear una nueva rama desde un commit específico**
+
+- Identificamos un commit antiguo desde el cual crearemos una nueva rama (`bugfix/rollback-feature`) y nos trasladamos hacia esa nueva rama.
+
+![](imgs/ejr3/1.png)
+
+**2. Modificar y confirmar cambios en la nueva rama:**
+
+- Realizamos algunas modificaciones en el archivo `main.py` y luego hacemos `git add` y `git commit`.
+
+![](imgs/ejr3/2.png)
+
+**3. Fusionar los cambios en la rama principal:**
+
+- Regresamos a la rama `main` y fusionamos la rama `bugfix/rollback-feature`, se generará un conflicto y lo resolvemos manualmente para que la fusión se complete. 
+
+![](imgs/ejr3/3.png)
+
+**4. Explorar el historial después de la fusión:**
+
+![](imgs/ejr3/4.png)
+
+**5. Eliminar la rama bugfix/rollback-feature:**
+
+![](imgs/ejr3/5.png)
+
