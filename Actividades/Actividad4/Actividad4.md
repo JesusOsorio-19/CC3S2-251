@@ -28,7 +28,7 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 
 ## Ejercicios
 
-### Ejercicio 1
+### Ejercicio 1: Manejo avanzado de ramas y resolución de conflictos
 
 **1. Crear una nueva rama para una característica:**
 
@@ -160,4 +160,24 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 **5. Eliminar la rama bugfix/rollback-feature:**
 
 ![](imgs/ejr3/5.png)
+
+### Ejercicio 4: Manipulación y restauración de commits con git reset y git restore
+
+**1. Hacer cambios en el archivo main.py:**
+
+![](imgs/ejr4/1.png)
+
+**2. Usar `git reset` para deshacer el commit:**
+
+- Verificamos que el commit este hecho y luego hacemos `git reset`.
+
+![](imgs/ejr4/2.png)
+
+- Comprobamos que el cambio en `main.py` se deshizo.
+
+![](imgs/ejr4/3.png)
+
+**3. Usar `git restore` para deshacer cambios no confirmados:**
+
+![](imgs/ejr4/4.png)
 
