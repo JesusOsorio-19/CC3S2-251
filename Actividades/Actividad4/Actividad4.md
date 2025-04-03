@@ -34,48 +34,101 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 
 - Mi presentación en Git.
   
-![Presentación](imgs/Presentacion.png)
+![Presentación](imgs/ejr1/Presentacion.png)
 
 - Creamos la nueva rama llamada feature/advanced-feature y nos desplazamos a ella.
 
-![NewBranch](imgs/newbranch.png)
+![NewBranch](imgs/ejr1/newbranch.png)
 
 **2. Modificar archivos en la nueva rama:**
 
 - Editamos el archivo main.py y hacemos git add y git commit.
 
-![Edit](imgs/editmain.png)
+![Edit](imgs/ejr1/editmain.png)
 
 **3. Simular un desarrollo paralelo en la rama main:**
 
 - Volvemos a la rama main y editamos nuevamente el archivo main.py, luego añadimos y confirmamos el cambio.
 
-![NewEdit](imgs/branchmain.png)
+![NewEdit](imgs/ejr1/branchmain.png)
 
 **4. Intentar fusionar la rama feature/advanced-feature en main:**
 
 - Fusionamos las dos ramas que tenemos.
 
-![Merge](imgs/merge.png)
+![Merge](imgs/ejr1/merge.png)
 
 **5. Resolver el conflicto de fusión:**
 
 - Al tratar de fusionar, Git generará un conflicto.
 
-![Merge](imgs/conflict.png)
+![Merge](imgs/ejr1/conflict.png)
 
 - Lo resolvemos manualmente, eligiendo como combinar las dos versiones.
 
-![MergeResolved](imgs/conflictrsvd.png)
+![MergeResolved](imgs/ejr1/conflictrsvd.png)
 
 - Una vez resuelto hacemos git add y git commit.
 
-![LastCommit](imgs/commitresolve.png)
+![LastCommit](imgs/ejr1/commitresolve.png)
 
 **6. Eliminar la rama fusionada:**
 
 - Una vez fusionada amba ramas, eliminamos la rama `feature/advanced-feature`:
 
-![Delete](imgs/deletebranch.png)
+![Delete](imgs/ejr1/deletebranch.png)
 
-### Ejercicio 2
+### Ejercicio 2: Exploración y manipulación del historial de commits
+
+**1. Ver el historial de commits:**
+
+- Vemos el historial de commits con `gitl log` 
+
+![lop-p](imgs/ejr2/logp.png)
+![lop-p2](imgs/ejr2/logp1.png)
+
+- Los cambios que se han realizado son básicamente de los ejemplos de la Actividad 4 y el Ejercicio 1.
+
+**2. Filtrar commits por autor:**
+
+![Logfilter](imgs/ejr2/logfilter.png)
+
+**3. Revertir un commit:**
+
+- Al querer revertir el último commit más reciente de main.py, sería el de fusión de ramas, así que `git revert HEAD` no seria el comando adecuado, sino `git revert -m 1 HEAD`
+
+![](imgs/ejr2/revert.png)
+
+- El commit se hizo de manera automática luego de confirmar que es correcto el revertir.
+
+![](imgs/ejr2/msjrevert.png)
+
+**4. Rebase interactivo:**
+
+![](imgs/ejr2/rebase.png)
+
+- En el editor que se nos abré editamos los dos últimos `pick` y lo reemplazamos por `squash`.
+
+![](imgs/ejr2/pick.png)
+![](imgs/ejr2/squash.png)
+
+- Pero el `rebase` no sigue porque hay un conflicto con el archivo main.py ya que al eliminar el último commit de este se modificó la fusión entre las ramas.
+
+![](imgs/ejr2/status.png)
+
+- Asi que lo resolvemos manualmente y le hacemos `git add`, luego colocamos `git rebase --continue` para que continue con el rebase interactivo.
+
+![](imgs/ejr2/continue.png)
+
+- Se abrirá dos editores de VScode automaticamente confirmando los commits que se realizará. 
+
+![](imgs/ejr2/endrebase.png)
+![](imgs/ejr2/endrebase1.png)
+
+- Verificamos que el `git rebase` a concluido
+
+![](imgs/ejr2/endstatus.png)
+
+**5. Visualización gráfica del historial:**
+
+![](imgs/ejr2/logall.png)
