@@ -181,7 +181,7 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 
 ![](imgs/ejr4/4.png)
 
-## Ejercicio 5: Trabajo colaborativo y manejo de Pull Requests
+### Ejercicio 5: Trabajo colaborativo y manejo de Pull Requests
 
 **1. Crear un nuevo repositorio remoto:**
 
@@ -223,7 +223,7 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 
 ![](imgs/ejr5/7.png)
 
-#### Ejercicio 6: Cherry-Picking y Git Stash
+### Ejercicio 6: Cherry-Picking y Git Stash
 
 **1. Hacer cambios en main.py y confirmarlos:**
 
