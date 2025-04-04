@@ -222,3 +222,33 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 - Entonces actualizamos la rama `main` con los cambios del repositorio remoto y luego de eso podremos eliminar la rama local y remota.
 
 ![](imgs/ejr5/7.png)
+
+#### Ejercicio 6: Cherry-Picking y Git Stash
+
+**1. Hacer cambios en main.py y confirmarlos:**
+
+![](imgs/ejr6/1.png)
+
+**2. Crear una nueva rama y aplicar el `commit` específico:**
+
+- Creamos una nueva rama y aplicamos el `commit` específico para lo cual primero hacemos un `git log` para ver el hash del commit y así hacer el `git cherry-pick`.
+
+![](imgs/ejr6/2.png)
+
+**3. Guardar temporalmente cambios no confirmados:**
+
+- Realizamos algunos cambios adicionales en `main.py`, pero no lo confirmamos. Y guardamos los cambios temporalmente con `git stash`.
+
+![](imgs/ejr6/3.png)
+
+**4. Aplicar los cambios guardados:**
+
+- Despues de realizar los cambios, recuperamos los cambios guardados previamente con `git stash pop`.
+
+![](imgs/ejr6/4.png)
+
+**5. Revisar el historial y confirmar la correcta aplicación de los cambios:**
+
+- Usamos `git log` para revisar el historial de commits y asegurarnos de que los cambios se han aplicado correctamente y por último de que los cambios guardados han sido recuperados.
+
+![](imgs/ejr6/5.png)
