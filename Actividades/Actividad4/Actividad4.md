@@ -181,3 +181,44 @@ Una rama es una versión paralela de algún repositorio. Esto nos permite trabaj
 
 ![](imgs/ejr4/4.png)
 
+## Ejercicio 5: Trabajo colaborativo y manejo de Pull Requests
+
+**1. Crear un nuevo repositorio remoto:**
+
+- Creamos un nuevo repositorio en GitHub [Repositorio Ejr5](https://github.com/JesusOsorio-19/Ejr5.git) y lo clonamos localmente.
+
+![](imgs/ejr5/1.png)
+
+**2. Crear una nueva rama para desarrollo de una característica:**
+
+- Creamos la rama nueva `feature/team-feature`.
+
+![](imgs/ejr5/2.png)
+
+**3. Realizar cambios y enviar la rama al repositorio remoto:**
+
+- Creamos un archivo y le realizamos cambios. Luego enviamos la rama al repositorio.
+
+![](imgs/ejr5/3.png)
+
+**4. Abrimos un Pull Request:**
+
+- Abrimos el Pull Request de GitHub para fusionar las ramas que tenemos. Luego añadimos una descripción detallada.
+
+![](imgs/ejr5/4.png)
+
+**5. Revisar y fusionar el Pull Request:**
+
+- Simulamos la revisión de código y realizamos cualquier cambio necesario para poder fusionar el PR en la rama `main`.
+
+![](imgs/ejr5/5.png)
+
+**6. Eliminar la rama remota y local:**
+
+- Al insertar el comando para eliminar la rama local tendremos un error, ya que el PR se ha hecho en GitHub pero no localmente. 
+
+![](imgs/ejr5/6.png)
+
+- Entonces actualizamos la rama `main` con los cambios del repositorio remoto y luego de eso podremos eliminar la rama local y remota.
+
+![](imgs/ejr5/7.png)
