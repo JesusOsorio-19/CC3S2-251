@@ -1,4 +1,4 @@
-# Actividad 2 - Introducción a Git, conceptos básicos y operaciones esenciales
+# Actividad 4 - Introducción a Git, conceptos básicos y operaciones esenciales
 
 ## Preguntas
 
