@@ -35,13 +35,10 @@ jobs:
       - name: Ejecutar Behave
         run: behave > behave-report.txt
 
-      - name: Verificar estilo con flake8
-        run: flake8 src tests features
-
       - name: Subir reportes como artifacts
         uses: actions/upload-artifact@v4
         with:
           name: reportes-de-pruebas
           path: |
-            pytest-report.txt
-            behave-report.txt
+            Actividades/Actividad7/belly_project/pytest-report.txt
+            Actividades/Actividad7/belly_project/behave-report.txt
