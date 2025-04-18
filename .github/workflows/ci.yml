@@ -27,18 +27,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest behave pytest-cov flake8
+          pip install pytest behave pytest-cov pytest-html
 
-      - name: Ejecutar Pytest con cobertura
-        run: pytest --cov=src tests/ > pytest-report.txt
+      - name: Ejecutar Pytest con cobertura y reporte HTML
+        run: pytest --cov=src tests/ --html=pytest-report.html
 
-      - name: Ejecutar Behave
-        run: behave > behave-report.txt
+      - name: Ejecutar Behave con reporte JUnit
+        run: behave --junit --junit-directory=reportes/
 
       - name: Subir reportes como artifacts
         uses: actions/upload-artifact@v4
         with:
           name: reportes-de-pruebas
           path: |
-            Actividades/Actividad7/belly_project/pytest-report.txt
-            Actividades/Actividad7/belly_project/behave-report.txt
+            Actividades/Actividad7/belly_project/pytest-report.html
+            Actividades/Actividad7/belly_project/reportes/
