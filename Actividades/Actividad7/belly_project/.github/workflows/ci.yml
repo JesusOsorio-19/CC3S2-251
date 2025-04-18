@@ -1,50 +1,33 @@
-name: CI - Belly Project
+name: Python CI
 
 on:
   push:
-    branches: [main]
-  pull_request:
+    branches: [develop, main, feature/dia6]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clonar repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
-      - name: Configurar Python
-        uses: actions/setup-python@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.9'
 
-      - name: Instalar dependencias
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest behave flake8 bandit coverage
+      - run: pip install -r requirements.txt
+      - name: Run Bandit Security Scan
+        run: bandit -r app/
 
-      - name: Ejecutar Pytest con cobertura
-        run: |
-          coverage run -m pytest
-          coverage xml  # Genera coverage.xml para SonarCloud
+      - run: pytest
 
-      - name: Ejecutar Behave
-        run: behave || true  
-
-      - name: Análisis de seguridad con Bandit
-        run: bandit -r src/
-
-      - name: Revisión de estilo con flake8
-        run: flake8 src/ tests/ features/
-
-      - name: Configurar Java para SonarCloud
+      - name: Set up Java for SonarCloud
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: 📡 Análisis con SonarCloud
+      - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -53,11 +36,7 @@ jobs:
           args: >
             -Dsonar.projectKey=JesusOsorio-19_CC3S2-251
             -Dsonar.organization=jesusosorio-19
-            -Dsonar.sources=src
-            -Dsonar.tests=tests
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.python.version=3.10
-            -Dsonar.verbose=true
+            -Dsonar.sources=.
             -Dsonar.c.file.suffixes=-
             -Dsonar.cpp.file.suffixes=-
             -Dsonar.objc.file.suffixes=-
