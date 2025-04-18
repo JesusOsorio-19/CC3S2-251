@@ -3,9 +3,12 @@ name: CI - BDD y TDD
 on:
   push:
     branches: [main]
+    paths:
+      - 'Actividades/Actividad7/belly_project/**'
   pull_request:
     branches: [main]
-
+    paths:
+      - 'Actividades/Actividad7/belly_project/**'
 jobs:
   test:
     runs-on: ubuntu-latest
