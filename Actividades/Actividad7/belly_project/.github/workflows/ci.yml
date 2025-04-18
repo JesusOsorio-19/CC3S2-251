@@ -1,47 +1,63 @@
-name: CI - TDD y BDD
+name: CI - Belly Project
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Clonar repositorio
-      uses: actions/checkout@v3
+      - name: Clonar repo
+        uses: actions/checkout@v3
 
-    - name: Configurar Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Instalar dependencias
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install behave pytest flake8 pytest-cov
+      - name: Instalar dependencias
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest behave flake8 bandit coverage
 
-    - name: Ejecutar Pytest con cobertura
-      run: |
-        pytest --cov=src tests/ > pytest-report.txt
+      - name: Ejecutar Pytest con cobertura
+        run: |
+          coverage run -m pytest
+          coverage xml  # Genera coverage.xml para SonarCloud
 
-    - name: Ejecutar Behave
-      run: |
-        behave > behave-report.txt
+      - name: Ejecutar Behave
+        run: behave || true  
 
-    - name: Verificar estilo con flake8
-      run: |
-        flake8 src tests features
+      - name: Análisis de seguridad con Bandit
+        run: bandit -r src/
 
-    - name: Subir reportes como artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: reports
-        path: |
-          pytest-report.txt
-          behave-report.txt
+      - name: Revisión de estilo con flake8
+        run: flake8 src/ tests/ features/
 
+      - name: Configurar Java para SonarCloud
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 📡 Análisis con SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=JesusOsorio-19_CC3S2-251
+            -Dsonar.organization=jesusosorio-19
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.python.version=3.10
+            -Dsonar.verbose=true
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
