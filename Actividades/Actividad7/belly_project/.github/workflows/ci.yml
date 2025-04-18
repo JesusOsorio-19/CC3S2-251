@@ -1,53 +1,47 @@
-name: CI - TDD y BDD
+name: CI - Belly Project
 
 on:
   push:
-    branches: [ main ]
-  
+    branches: [main]
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Configurar Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
       - name: Instalar dependencias
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install behave pytest pytest-cov flake8
+        run: pip install -r requirements.txt
 
-      - name: Ejecutar Pytest con cobertura
-        run: |
-          pytest --cov=src tests/ > pytest-report.txt
+      - name: Análisis de seguridad con Bandit
+        run: bandit -r src/
 
-      - name: Ejecutar Behave
-        run: |
-          behave > behave-report.txt
+      - name: Ejecutar pruebas Pytest
+        run: pytest
 
-      - name: Verificar estilo con flake8
-        run: |
-          flake8 src tests features
-
-      - name: Subir reportes como artifacts
-        uses: actions/upload-artifact@v3
+      - name: Set up Java for SonarCloud
+        uses: actions/setup-java@v3
         with:
-          name: reports
-          path: |
-            pytest-report.txt
-            behave-report.txt
+          distribution: 'temurin'
+          java-version: '17'
 
-      - name: Analizar con SonarCloud
+      - name: Análisis SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: .
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: JesusOsorio-19_CC3S2-251
-          SONAR_ORGANIZATION: jesusosorio-19
+        with:
+          projectBaseDir: .
+          args: >
+            -Dsonar.projectKey=JesusOsorio-19_CC3S2-251
+            -Dsonar.organization=jesusosorio-19
+            -Dsonar.sources=src
+            -Dsonar.tests=tests
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.c.file.suffixes=-
+            -Dsonar.cpp.file.suffixes=-
+            -Dsonar.objc.file.suffixes=-
