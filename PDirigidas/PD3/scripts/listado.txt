@@ -1,0 +1,9 @@
+total 7
+-rwxr-xr-x 1 jesus 197609  41 Apr 23 01:09 hello.sh
+-rw-r--r-- 1 jesus 197609   0 Apr 23 01:43 listado.txt
+-rwxr-xr-x 1 jesus 197609 328 Apr 23 01:33 script_aritmetica.sh
+-rwxr-xr-x 1 jesus 197609 241 Apr 23 01:25 script_arrays.sh
+-rwxr-xr-x 1 jesus 197609 152 Apr 23 01:18 script_params.sh
+-rwxr-xr-x 1 jesus 197609 225 Apr 23 01:42 script_pipes_redirecciones.sh
+-rwxr-xr-x 1 jesus 197609 225 Apr 23 01:41 script_pipes_redirecciones.shy
+-rwxr-xr-x 1 jesus 197609 146 Apr 23 01:15 script_vars.sh
