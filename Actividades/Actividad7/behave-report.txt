@@ -1,0 +1,119 @@
+Característica: Característica del estómago # features/belly.feature:3
+
+  Escenario: comer muchos pepinos y esperar menos de una hora  # features/belly.feature:5
+    Dado que he comido 50 pepinos                              # features/steps/steps.py:48
+    Cuando espero media hora                                   # features/steps/steps.py:73
+    Entonces mi estómago no debería gruñir                     # features/steps/steps.py:121
+
+  Escenario: comer pepinos y esperar en minutos  # features/belly.feature:10
+    Dado que he comido 30 pepinos                # features/steps/steps.py:48
+    Cuando espero 90 minutos                     # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir          # features/steps/steps.py:117
+
+  Escenario: comer pepinos y esperar en diferentes formatos  # features/belly.feature:15
+    Dado que he comido 25 pepinos                            # features/steps/steps.py:48
+    Cuando espero "dos horas y treinta minutos"              # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                      # features/steps/steps.py:117
+
+  Escenario: Comer una cantidad fraccionaria de pepinos  # features/belly.feature:20
+    Dado que he comido 0.5 pepinos                       # features/steps/steps.py:48
+    Cuando espero 2 horas                                # features/steps/steps.py:73
+    Entonces mi estómago no debería gruñir               # features/steps/steps.py:121
+
+  Escenario: esperar usando horas en inglés      # features/belly.feature:25
+    Dado que he comido 20 pepinos                # features/steps/steps.py:48
+    Cuando espero "two hours and thirty minutes" # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir          # features/steps/steps.py:117
+
+  Escenario: esperar usando segundos en inglés                 # features/belly.feature:30
+    Dado que he comido 35 pepinos                              # features/steps/steps.py:48
+    Cuando espero "one hour, thirty minutes and forty seconds" # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                        # features/steps/steps.py:117
+
+  Escenario: Comer pepinos y esperar un tiempo aleatorio  # features/belly.feature:35
+    Dado que he comido 25 pepinos                         # features/steps/steps.py:48
+    Cuando espero un tiempo aleatorio entre 1 y 3 horas   # features/steps/steps.py:65
+    Entonces mi estómago debería gruñir                   # features/steps/steps.py:117
+
+  Escenario: Manejar una cantidad no valida de pepinos  # features/belly.feature:40
+    Dado que he comido -5 pepinos                       # features/steps/steps.py:48
+    Entonces error de cantidad de pepinos negativos     # features/steps/steps.py:125
+
+  Escenario: Manejar una cantidad excesiva de pepinos  # features/belly.feature:44
+    Dado que he comido 150 pepinos                     # features/steps/steps.py:48
+    Entonces error de cantidad de pepinos excesivos    # features/steps/steps.py:129
+Modo de prueba: se ignora el limite de 100 pepinos.
+
+  @escalabilidad
+  Escenario: Comer 1000 pepinos y esperar 10 horas  # features/belly.feature:49
+    Dado que he comido 1000 pepinos                 # features/steps/steps.py:48
+    Cuando espero 10 horas                          # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir             # features/steps/steps.py:117
+
+  Escenario: manejar tiempos complejos               # features/belly.feature:54
+    Dado que he comido 50 pepinos                    # features/steps/steps.py:48
+    Cuando espero "1 hora, 30 minutos y 45 segundos" # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir              # features/steps/steps.py:117
+
+  Escenario: Comer muchos pepinos y esperar el tiempo suficiente  # features/belly.feature:59
+    Dado que he comido 15 pepinos                                 # features/steps/steps.py:48
+    Cuando espero 2 horas                                         # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                           # features/steps/steps.py:117
+
+  Escenario: comer suficientes pepinos y esperar el tiempo adecuado  # features/belly.feature:64
+    Dado que he comido 20 pepinos                                    # features/steps/steps.py:48
+    Cuando espero 2 horas                                            # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                              # features/steps/steps.py:117
+
+  Escenario: comer pocos pepinos y no esperar suficiente tiempo  # features/belly.feature:69
+    Dado que he comido 5 pepinos                                 # features/steps/steps.py:48
+    Cuando espero 1 horas                                        # features/steps/steps.py:73
+    Entonces mi estómago no debería gruñir                       # features/steps/steps.py:121
+
+  Escenario: comer más de 10 pepinos y esperar menos de 1 hora  # features/belly.feature:74
+    Dado que he comido 15 pepinos                               # features/steps/steps.py:48
+    Cuando espero 0.5 horas                                     # features/steps/steps.py:73
+    Entonces mi estómago no debería gruñir                      # features/steps/steps.py:121
+
+  Escenario: Saber cuántos pepinos he comido  # features/belly.feature:79
+    Dado que he comido 10 pepinos             # features/steps/steps.py:48
+    Cuando he comido 5 pepinos más            # features/steps/steps.py:56
+    Entonces debería haber comido 15 pepinos  # features/steps/steps.py:60
+
+  Escenario: Saber cuantos pepinos fraccionarios he comido  # features/belly.feature:84
+    Dado que he comido 1.5 pepinos                          # features/steps/steps.py:48
+    Cuando he comido 0.5 pepinos más                        # features/steps/steps.py:56
+    Entonces debería haber comido 2.0 pepinos               # features/steps/steps.py:60
+
+  Escenario: Verificar que el estómago gruñe tras comer suficientes pepinos y esperar  # features/belly.feature:89
+    Dado que he comido 20 pepinos                                                      # features/steps/steps.py:48
+    Cuando espero 2 horas                                                              # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                                                # features/steps/steps.py:117
+
+  Escenario: Predecir si mi estómago gruñirá tras comer y esperar  # features/belly.feature:94
+    Dado que he comido 12 pepinos                                  # features/steps/steps.py:48
+    Cuando espero 1.5 horas                                        # features/steps/steps.py:73
+    Entonces mi estómago debería gruñir                            # features/steps/steps.py:117
+
+  Escenario: Saber cuántos pepinos más puedo comer antes de gruñir  # features/belly.feature:99
+    Dado que he comido 8 pepinos                                    # features/steps/steps.py:48
+    Y he esperado 2 horas                                           # features/steps/steps.py:139
+    Cuando pregunto cuántos pepinos más puedo comer                 # features/steps/steps.py:134
+    Entonces debería decirme que puedo comer 3 pepinos más          # features/steps/steps.py:143
+
+  Escenario: Ya estoy gruñendo                         # features/belly.feature:105
+    Dado que he comido 20 pepinos                      # features/steps/steps.py:48
+    Y he esperado 2 horas                              # features/steps/steps.py:139
+    Cuando pregunto cuántos pepinos más puedo comer    # features/steps/steps.py:134
+    Entonces debería decirme que ya no puedo comer más # features/steps/steps.py:148
+
+  Escenario: Aún no he esperado suficiente tiempo   # features/belly.feature:111
+    Dado que he comido 8 pepinos                    # features/steps/steps.py:48
+    Y he esperado 0.5 horas                         # features/steps/steps.py:139
+    Cuando pregunto cuántos pepinos más puedo comer # features/steps/steps.py:134
+    Entonces debería decirme que debo esperar más   # features/steps/steps.py:153
+
+1 feature passed, 0 failed, 0 skipped
+22 scenarios passed, 0 failed, 0 skipped
+67 steps passed, 0 failed, 0 skipped, 0 undefined
+Took 0m0.006s
