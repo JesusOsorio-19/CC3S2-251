@@ -204,7 +204,20 @@ Agregamos una funcionalidad que cada vez que se agrega un usuario, se envíe un 
 
 Implementamos una prueba para esta nueva función.
 
-![](imgs/8.png)
+```python
+def test_envio_correo_bienvenida_al_agregar_usuario():
+    # Arrange
+    mock_email_service = MagicMock()
+    manager = UserManager(email_service=mock_email_service)
+    username = "nuevoUsuario"
+    password = "NuevaPass123!"
+
+    # Act
+    manager.add_user(username, password)
+
+    # Assert
+    mock_email_service.send_welcome_email.assert_called_once_with(username)
+```
 
 Modificamos `src/user_manager.py`, al método `__init__` le agregamos un nuevo parámetro e inyectamos el servicio de correo:
 ```python
@@ -217,3 +230,12 @@ if self.email_service:
             self.email_service.send_welcome_email(username)
 ```
 
+Con esto nuestra prueba debe pasar.
+
+![](imgs/9.png)
+
+Para finalizar, hacemos un `coverage` para ver cuanta cobertura tiene nuestro código.
+
+![](imgs/10.png)
+
+Vemos que `UserManager` tiene más del 90%.
