@@ -165,14 +165,14 @@ proyecto_iac_local/
 
     Aqui se envia este valor que se ejecuto con `main.tf` al modulo `application_service` donde se crearan los archivos de configurion `config.json` usando el template `config.json.tpl`:
 
-    ```
+    ```json
     # Proyecto_iac_local/modules/application_service/templates/config.json.tpl
     6  "globalDeploymentId": "${deployment_id_tpl}", 
     ```
 
     Para recibir este valor debe ser definido en el `main.tf` de `application_service`:
 
-    ```
+    ```terraform
     # Proyecto_iac_local/modules/application_service/main.tf
     30  deployment_id_tpl     = var.deployment_id  
     ```
@@ -187,7 +187,7 @@ proyecto_iac_local/
 
    Se modifica el script de bash `initial_setup.sh`, este creara un archivo control (si es que no existe) y dentro se pondra un contador para verificar cuantas veces se corrio este script ( o el flujo de generacion de environments puesto que estan ligados ).
 
-   ```
+   ```sh
    # Proyecto_iac_local/modules/environment_setup/scripts/initial_setup.sh 
    19  if [ ! -f "$CONTROL_FILE" ]; then 
    20  echo "Ejecutando setup inicial para el entorno: $ENV_NAME" 
@@ -201,7 +201,7 @@ proyecto_iac_local/
 
    En el caso que el archivo exista (inicialmente tendra el contenido `count=1`) entonces se parseara el archivo (usando grep) y se aumentara en uno el conteo. 
 
-   ```
+   ```sh
    # Proyecto_iac_local/modules/environment_setup/scripts/initial_setup.sh 
    28 else 
    29  echo "Control file existe" 
@@ -230,21 +230,21 @@ proyecto_iac_local/
 
     Como este valor se esta mostrando por que esta mapeado en el archivo template `config.json.tpl` se revisara una condicion para saber si es sensitive (secreta). Para esto `terraform` tiene una funcion `issensitive()` en el cual recibe como argumento la variable. Se pasa este nuevo valor booleana al template de esta manera:
 
-    ```
+    ```terraform
    # Proyecto_iac_local/modules/application_service/main.tf
    31 issensitive_global_message_tpl = issensitive(var.global_message_from_root) 
    ```
 
    Con este valor se puede usar una condicional (ternario) en el archivo template para que el `mensaje_global` se muestre en caso de que esta nueva variable booleana sea falsa:
 
-    ```
+    ```json
    # Proyecto_iac_local/modules/application_service/templates/config.json.tpl
    7  "notes": "Este es un archivo de configuración autogenerado. ${issensitive_global_message_tpl? "Valor ofuscado" : message_tpl }", 
    ```
 
    Si es `sensitive` se mostrara `valor ofuscado` en los archivos config generados para cada aplicacion:
 
-    ```
+    ```json
    # Proyecto_iac_local/generated_environment/services/app1_v1.0.2/config.jsonjson.tpl
    7  "notes": "Este es un archivo de configuración autogenerado. Valor ofuscado",  
    ```
